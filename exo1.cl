@@ -14,13 +14,14 @@
             (list (first (last (rest n))) (first (rest n)) (first n)))))
 
 ;; 3) itératif
-;;#
+(defun reverseC (l)
+    (let ((n nil))
+        (dolist (x l n) (push x n))))
 
 ;; 3) récursif
 (defun reverseC (l)
     (when l
         (append (reverseC (cdr l)) (list (car l)))))
-
 
 ;; 4) itératif
 (defun double (l)
@@ -45,7 +46,14 @@
 )
 
 ;; 5) récursif
-;;#
+(defun doublebis (l)
+    (if  (not (null l)) 
+        (if (atom (car l))
+            (append (list (car l) (car l)) (doublebis (cdr l)))
+            (append (list (doublebis (car l))) (doublebis (cdr l)))
+        )
+    )
+)
 
 ;; 6) itératif
 (defun monAppend (l m)
@@ -61,7 +69,14 @@
 )
 
 ;; 6) récursif
-;;#
+(defun monAppend (l n)
+    (if l
+        (cons (car l) (monAppend (cdr l) n))
+        (when n
+            (cons (car n) (monAppend () (cdr n)))
+        )
+    )
+)
 
 ;; 7) récursif
 (defun myEqual (a b)
