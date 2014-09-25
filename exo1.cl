@@ -24,6 +24,7 @@
         (append (reverseC (cdr l)) (list (car l)))))
 
 ;; 4) itératif
+;; On aurait pu utiliser mapcar, mais on apprend à l'utiliser à l'exo 2
 (defun double (l)
     (let ((a (list ()))) ; Pourquoi ça ne fonctionne pas (let ((a '(nil)))
         (dolist (x l (cdr a))
