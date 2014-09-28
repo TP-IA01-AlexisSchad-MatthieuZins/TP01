@@ -46,6 +46,18 @@
     )
 )
 
+;;nouvelle methode sans le probleme de l'initialisation de a (a list ())
+(defun double (l)
+	(let ((a nil))
+		(dolist (x l a) 
+			(if (atom x) 
+				(setf a (append a (list x x)))
+				(setf a (append a (list x)))
+			)
+		)
+	)
+)
+                
 ;; 5) récursif
 (defun doublebis (l)
     (if  (not (null l)) 
