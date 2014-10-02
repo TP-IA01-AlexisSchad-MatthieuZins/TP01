@@ -9,58 +9,47 @@
         ((= (length n) 1) 
             n)
         ((= (length n) 2)
-            (list (first (last n)) (first n)))
+            (list (cadr n) (car n)))
         ((= (length n) 3)
-            (list (first (last (rest n))) (first (rest n)) (first n)))))
+         (list (caddr n) (cadr n) (car n)))
+     )
+)
 
-;; 3) itératif
-(defun reverseC (l)
-    (let ((n nil))
+;; 3) iteratif
+(defun reverseC_i (l)
+    (let ((n ()))
         (dolist (x l n) (push x n))))
 
-;; 3) récursif
-(defun reverseC (l)
+;; 3) recursif
+(defun reverseC_r (l)
     (when l
-        (append (reverseC (cdr l)) (list (car l)))))
+        (append (reverseC_r (cdr l)) (list (car l)))))
 
-;; 4) itératif
-;; On aurait pu utiliser mapcar, mais on apprend à l'utiliser à l'exo 2
-(defun double (l)
-    (let ((a (list ()))) ; Pourquoi ça ne fonctionne pas (let ((a '(nil)))
-        (dolist (x l (cdr a))
-            (if (atom x) 
-                (nconc a (list x x))
-                (nconc a (list x))
-            )
-        )
-    )
-)
+;; 4) iteratif
+(defun double_i (l)
+  (let ((temp ()))
+    (dolist (x l temp) 
+      (if (atom x) 
+          (setq temp (append temp (list x x)))
+        (setq temp (append temp (list x)))))))
 
-;; 4) récursif
-(defun double (l)
+
+
+;; 4) recursif
+(defun double_r (l)
     (when l
         (if (atom (car l)) 
-            (append (list (car l) (car l)) (double (cdr l)))
-            (append (list (car l)) (double (cdr l)))
+            (append (list (car l) (car l)) (double_r (cdr l)))
+            (append (list (car l)) (double_r (cdr l)))
         )
     )
 )
 
-;;nouvelle methode sans le probleme de l'initialisation de a (a list ())
-(defun double (l)
-	(let ((a nil))
-		(dolist (x l a) 
-			(if (atom x) 
-				(setf a (append a (list x x)))
-				(setf a (append a (list x)))
-			)
-		)
-	)
-)
+
                 
-;; 5) récursif
+;; 5) recursif
 (defun doublebis (l)
-    (if  (not (null l)) 
+    (when l
         (if (atom (car l))
             (append (list (car l) (car l)) (doublebis (cdr l)))
             (append (list (doublebis (car l))) (doublebis (cdr l)))
@@ -68,30 +57,30 @@
     )
 )
 
-;; 6) itératif
-(defun monAppend (l m)
-    (let ((a (list ())))
+;; 6) it�ratif
+(defun monAppend_i (l m)
+    (let ((a ()))
         (dolist (x l)
-            (nconc a (list x))
+            (setq a (cons x a))
         )
         (dolist (x m)
-            (nconc a (list x))
-        )
-        (cdr a)
-    )
+          (setq a (cons x a))
+          )
+        (reverse a)
+      )
 )
 
-;; 6) récursif
-(defun monAppend (l n)
+;; 6) recursif
+(defun monAppend_r (l n)
     (if l
-        (cons (car l) (monAppend (cdr l) n))
+        (cons (car l) (monAppend_r (cdr l) n))
         (when n
-            (cons (car n) (monAppend () (cdr n)))
+            (cons (car n) (monAppend_r l (cdr n)))
         )
     )
 )
 
-;; 7) récursif
+;; 7) recursif
 (defun myEqual (a b)
     (when (eq (type-of a) (type-of b))
         (cond 
