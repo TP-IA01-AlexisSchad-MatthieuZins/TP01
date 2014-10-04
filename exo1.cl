@@ -82,15 +82,18 @@
 
 ;; 7) recursif
 (defun myEqual (a b)
-    (when (eq (type-of a) (type-of b))
-        (cond 
-            ((atom a)
-                (eq a b)
-            )
-            ((listp a)
-                (and (myEqual (car a) (car b)) (myEqual (cdr a) (cdr b)))
-            )
-            ;; Mettre ici la gestion d'autres types
-        )
+  (cond 
+   ((and (stringp a) (stringp b) (eq (length a) (length b)))
+    (dotimes (x (length a) t)
+      (when (not (eq (char a x) (char b x)))
+        (return nil))
+      )
     )
+   ((and (atom a) (atom b))
+    (eq a b)
+    )
+   ((and (listp a) (listp b))
+    (and (myEqual (car a) (car b)) (myEqual (cdr a) (cdr b)))
+    )      
+   )
 )
