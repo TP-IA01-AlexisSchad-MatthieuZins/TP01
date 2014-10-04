@@ -6,6 +6,7 @@
 (defun age (personne) (cadddr personne))
 (defun nombre-livres (personne) (car (last personne)))
 
+;; fonctions de gestions de la base
 
 (defun fb1 (base)
 	(dolist (x base) 
@@ -16,18 +17,18 @@
 
 (defun fb2 (base)
 	(dolist (x base) 
-		(if (equal 'Perrot (nom x))
+		(when (equal 'Perrot (nom x))
 			(format t "~S ~S ~S ~S ~S ~%" (nom x) (prenom x) (ville x) (age x) (nombre-livres x))
 		)
 	)
 )
 
 
-(defun fb3 (base nom)
+(defun fb3 (base n)
 	(let ((l '()))
 		(dolist (x base l)
-			(if (equal (nom x) nom)
-				(setf l (append (list x) l))
+			(if (equal (nom x) n)
+				(setq l (append l (list x)))
 			)
 		)
 	)

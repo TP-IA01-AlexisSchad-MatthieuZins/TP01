@@ -89,6 +89,8 @@
         (return nil))
       )
     )
+   ((or (and (integerp a) (integerp b)) (and (floatp a) (floatp b)))
+         (= a b))
    ((and (atom a) (atom b))
     (eq a b)
     )
