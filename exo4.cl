@@ -30,7 +30,7 @@
 				(setf l (append (list x) l))
 			)
 		)
-    )
+	)
 )
 
 (defun fb4 (base x)
@@ -53,7 +53,7 @@
 
 (defun fb6 (base x)
 	(let ((somme-ages 0) (somme-pers 0))
-		(dolist (p base (if (= somme-pers 0) nil (/ somme-ages somme-pers)))
+		(dolist (p base)
 			(if (equal x (nom p))
 				(progn
 					(setf somme-ages (+ somme-ages (age p)))
@@ -61,5 +61,10 @@
 				)
 			)
 		)
+		(if (= somme-pers 0)
+			nil
+			(/ somme-ages somme-pers)
+		)
 	)
 )
+
