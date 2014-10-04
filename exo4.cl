@@ -25,7 +25,7 @@
 
 
 (defun fb3 (base n)
-	(let ((l '()))
+	(let ((l ()))
 		(dolist (x base l)
 			(if (equal (nom x) n)
 				(setq l (append l (list x)))
