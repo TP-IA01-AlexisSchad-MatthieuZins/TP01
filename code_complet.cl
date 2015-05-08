@@ -6,6 +6,7 @@
 ;; nous avons rajouté "_i" ou "_r" aux noms des fonctions 
 ;; pour les différencier.
 ;;olololol
+;;lacazette
 
 ;; Exercice 1 :
 ;;-------------
