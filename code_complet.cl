@@ -5,7 +5,7 @@
 ;; Lorsque deux solutions sont présentées (itérative et récursive)
 ;; nous avons rajouté "_i" ou "_r" aux noms des fonctions 
 ;; pour les différencier.
-
+;;olololol
 
 ;; Exercice 1 :
 ;;-------------
